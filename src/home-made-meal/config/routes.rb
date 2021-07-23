@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :food_items
   resources :profiles
   # devise_for :users
   root to: 'home#index'
