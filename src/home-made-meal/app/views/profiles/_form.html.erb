@@ -11,8 +11,7 @@
     <%= f.input :street_name %>
     <%= f.input :suburb %>
     <%= f.input :postcode %>
-    <%= f.input :state %>
-    <%= f.hidden_field :user %>
+    <%= f.select :state, Profile.states.keys %>
   </div>
 
   <div class="form-actions">
