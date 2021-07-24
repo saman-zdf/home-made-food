@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col">
+    <%= image_tag @food_item.images.first, class: "show-image" %>
+  </div>
+</div>
+
 
 <p>
   <strong>Name:</strong>
@@ -39,6 +45,8 @@
   <strong>Profile:</strong>
   <%= @food_item.profile_id %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_food_item_path(@food_item) %> |
 <%= link_to 'Back', food_items_path %>
