@@ -33,6 +33,7 @@ class FoodItemsController < ApplicationController
     @food_item = FoodItem.new(food_item_params)
     # once the profile created we can assign the seller_id to the current_user.profile.id
     @food_item.seller_id = current_user.profile.id
+    # assign the currernt_user.id to eh food_item.profile_id
     @food_item.profile_id = current_user.id
 
     respond_to do |format|
@@ -75,7 +76,12 @@ class FoodItemsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    
+
+
+
+    # images attribute has been added as a params to allow the image be created 
     def food_item_params
-      params.require(:food_item).permit(:name, :description, :availability, :food_type, :price, :buyer_id, :seller_id, :profile_id)
+      params.require(:food_item).permit(:name, :description, :availability, :food_type, :price, :buyer_id, :seller_id, :profile_id, images: [])
     end
 end
