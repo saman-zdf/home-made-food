@@ -1,0 +1,31 @@
+<h1>Your shopping Cart</h1>
+<hr>
+<% if @cart.present? %>
+  <div class="d-flex flex-column bd-highlight mb-3 justify-content-centert ">
+    <% @cart.each do |item| %>
+      <div class="p-2 bd-highlight">
+        <div class="row">
+            <div class="col">
+              <% if item.images && item.images.first %>
+                <%= image_tag item.images.first, class: "image-shopping-cart" %>
+              <% else %>
+                <%# add a place holder image %>
+                <%= image_tag "", class: "card-img-top img-index" %>
+              <% end %>
+            </div>
+            <div class="col align-self-center">
+                <h3><%= item.name %></h3>
+            </div>
+            <div class="col align-self-center">
+              <%= button_to "Remove from cart", remove_from_cart_path(@cart), class: "btn btn-warning", method: :delete%>
+            </div>
+        </div>
+        <hr>
+      <% end %>
+  </div>
+<% else %> 
+
+  <p>Your shopping cart is empty, please choose an item</p>
+<% end %>
+<h4>Sutotal: $<%= @subtotal %></h4>
+

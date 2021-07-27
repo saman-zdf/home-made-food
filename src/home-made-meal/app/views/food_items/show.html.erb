@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row my-5">
   <div class="col">
     <%= image_tag @food_item.images.first, class: "show-image" %>
   </div>
@@ -20,10 +20,20 @@
   <strong>Availability:</strong>
   <%= @food_item.availability %>
 </p>
-
+<p>
+  <strong>id</strong>
+  <%= @food_item.id %>
+</p>
+<%# find a way to show the food type through collection in simple form, this is the bad solution %>
 <p>
   <strong>Food type:</strong>
-  <%= @food_item.food_type %>
+    <% if @food_item.food_type == 0  %>
+      <p>Carnivore</p>
+      <% elsif @food_item.food_type == 1 %>
+      <p>Vegeterian</p>
+      <% elsif @food_item.food_type == 2 %>
+      <p>Vegan</p>
+    <% end %>
 </p>
 
 <p>
@@ -31,22 +41,24 @@
   <%= @food_item.price %>
 </p>
 
-<p>
-  <strong>Buyer:</strong>
-  <%= @food_item.buyer_id %>
-</p>
+
 
 <p>
   <strong>Seller:</strong>
-  <%= @food_item.seller_id %>
-</p>
-
-<p>
-  <strong>Profile:</strong>
-  <%= @food_item.profile_id %>
+  <%= @food_item.profile.username %>
 </p>
 
 
 
-<%= link_to 'Edit', edit_food_item_path(@food_item) %> |
-<%= link_to 'Back', food_items_path %>
+<%# if the current user and current_user profile the same as currernt user profile id == @food_item seller id , current user will have a acees to the edit button %>
+<% if current_user && current_user.profile && (current_user.profile.id == @food_item.seller.id) %>
+  <%= link_to 'Edit', edit_food_item_path(@food_item), class: "btn btn-primary mt-4" %> 
+  <%= link_to 'Back', food_items_path, class: "btn btn-primary mt-4"%>
+<% end %>
+<% if @cart.include?(@food_item) %>
+  <p>The item has been added to your cart</p>
+  <%= link_to "Back to shopping", root_path, class: "btn btn-info mb-5" %>
+<% else %>
+  <%= button_to "Add to Cart", add_to_cart_path, class: "btn btn-success mb-5", method: :post %>
+<% end %>
+
