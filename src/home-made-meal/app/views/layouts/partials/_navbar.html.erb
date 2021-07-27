@@ -12,6 +12,9 @@
           <li class="nav-item">
             <%= link_to "Sell food", new_food_item_path, class: "nav-link"%>
           </li>
+          <li class="nav-item">
+            <%= link_to "Cart", cart_path, class: "nav-link"%>
+          </li>
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to "logout", logout_path, class: "nav-link", method: :delete%>

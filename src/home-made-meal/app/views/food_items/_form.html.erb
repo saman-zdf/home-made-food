@@ -7,7 +7,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :availability %>
-    <%= f.select :food_type, FoodItem.food_types.keys %>
+    <%= f.input :food_type, collection: ["Carnivore", "Vegeterian", "Vegan" ] %>
     <%= f.input :price %>
     <%# added the file field for uploadinf an image, it accepts three different format and we can upload more than on image %>
     <%= f.file_field :images, accept: "image/png, image/jpg, image/jpeg", multiple: true  %>

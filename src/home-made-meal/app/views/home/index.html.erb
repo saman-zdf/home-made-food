@@ -1,10 +1,12 @@
 <h1>welcom to our home made meal</h1>
-<div class="container">
+
   <div class="row">
     <% @food_items.each do |food| %>
       <div class="col">
         <div class="card" style="width: 18rem;">
-          <%= image_tag food.images.first if food.images.attached?%>
+        <% if food.images.attached? %>
+          <%= image_tag food.images.first, class: 'index-image' %>
+        <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= food.name %></h5>
               <%= link_to "View more", food_item_path(food),  class: "btn btn-primary" %>
@@ -13,5 +15,5 @@
       </div>
     <% end %>
   </div>
-</div>
+
 

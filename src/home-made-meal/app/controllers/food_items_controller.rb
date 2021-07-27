@@ -1,7 +1,17 @@
 class FoodItemsController < ApplicationController
   before_action :set_food_item, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-
+# add_to_cart action will append fooe item id to the session[:cart] which been initialize in appcontroller, and it will redirect to the shop page path. might change the path later
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to food_item_path
+  end
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to cart_path
+  end
   # GET /food_items or /food_items.json
   def index
     @food_items = FoodItem.all

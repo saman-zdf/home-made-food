@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
   resources :food_items
   resources :profiles
-  # devise_for :users
   root to: 'home#index'
+
   devise_scope :user do
     get "/login", :to => "devise/sessions#new" # Add a custom sign in route for user sign in
     delete "/logout", :to => "devise/sessions#destroy" # Add a custom sing out route for user sign out
     get "/sign_up", :to => "devise/registrations#new" # Add a Custom Route for Registrations
-    get "/profile", :to => "devise/registrations#edit"
+    get "/profile", :to => "devise/registrations#edit" # Add a Custom Routes for Editing the Profile 
     devise_for :user
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post "food_items/add_to_cart/:id", to: "food_items#add_to_cart", as: "add_to_cart"
+  delete "food_items/remove_from_cart/:id", to: "food_items#remove_from_cart", as: "remove_from_cart"
+  get "carts/index", to: 'carts#index', as: "cart"
+
 end
