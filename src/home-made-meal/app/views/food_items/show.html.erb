@@ -1,64 +1,27 @@
 
-<div class="row my-5">
+<div class="row my-5 justify-content-between">
+  <div class="col">
+    <ul class="list-group">
+      <li class="list-group-item">Name: <%= @food_item.name %></li>
+      <li class="list-group-item">Description: <%= @food_item.description %></li>
+      <li class="list-group-item">Availability: <%= @food_item.availability %></li>
+      <li class="list-group-item">Food type: <%= @food_item.food_type %></li>
+      <li class="list-group-item">Price: <%= @food_item.price %></li>
+      <li class="list-group-item">Seller: <%= @food_item.profile.username %></li>
+  </div>
   <div class="col">
     <%= image_tag @food_item.images.first, class: "show-image" %>
   </div>
 </div>
-
-
-<p>
-  <strong>Name:</strong>
-  <%= @food_item.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @food_item.description %>
-</p>
-
-<p>
-  <strong>Availability:</strong>
-  <%= @food_item.availability %>
-</p>
-<p>
-  <strong>id</strong>
-  <%= @food_item.id %>
-</p>
-<%# find a way to show the food type through collection in simple form, this is the bad solution %>
-<p>
-  <strong>Food type:</strong>
-    <% if @food_item.food_type == 0  %>
-      <p>Carnivore</p>
-      <% elsif @food_item.food_type == 1 %>
-      <p>Vegeterian</p>
-      <% elsif @food_item.food_type == 2 %>
-      <p>Vegan</p>
-    <% end %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @food_item.price %>
-</p>
-
-
-
-<p>
-  <strong>Seller:</strong>
-  <%= @food_item.profile.username %>
-</p>
-
-
-
 <%# if the current user and current_user profile the same as currernt user profile id == @food_item seller id , current user will have a acees to the edit button %>
 <% if current_user && current_user.profile && (current_user.profile.id == @food_item.seller.id) %>
-  <%= link_to 'Edit', edit_food_item_path(@food_item), class: "btn btn-primary mt-4" %> 
-  <%= link_to 'Back', food_items_path, class: "btn btn-primary mt-4"%>
+  <%= link_to 'Edit', edit_food_item_path(@food_item), class: "btn btn-primary my-2" %> 
+  <%= link_to 'Back', food_items_path, class: "btn btn-primary my-2"%>
 <% end %>
 <% if @cart.include?(@food_item) %>
   <p>The item has been added to your cart</p>
-  <%= link_to "Back to shopping", root_path, class: "btn btn-info mb-5" %>
+  <%= link_to "Back to shopping", root_path, class: "btn btn-info my-1" %>
 <% else %>
-  <%= button_to "Add to Cart", add_to_cart_path, class: "btn btn-success mb-5", method: :post %>
+  <%= button_to "Add to Cart", add_to_cart_path, class: "btn btn-success my-5", method: :post %>
 <% end %>
 

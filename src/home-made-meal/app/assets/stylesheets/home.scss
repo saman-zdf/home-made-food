@@ -7,3 +7,12 @@
   height: 300px;
   object-fit: cover;
 }
+.search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-box {
+    justify-self: center;
+  }
+}

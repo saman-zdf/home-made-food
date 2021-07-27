@@ -17,7 +17,9 @@
                 <h3><%= item.name %></h3>
             </div>
             <div class="col align-self-center">
-              <%= button_to "Remove from cart", remove_from_cart_path(@cart), class: "btn btn-warning", method: :delete%>
+              <%= button_to remove_from_cart_path(@cart), class: "btn btn-warning", method: :delete do %>
+                <i class="far fa-trash-alt fa-3x"></i>
+              <% end %>
             </div>
         </div>
         <hr>
