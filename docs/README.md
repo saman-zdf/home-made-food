@@ -53,4 +53,4 @@
 ---
 
 8. ## An ERD of the App
-   ![ERD](docs/initial-ERD.png)
+   ![ERD]("")
