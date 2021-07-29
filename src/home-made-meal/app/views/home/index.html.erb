@@ -8,7 +8,8 @@
           <%= image_tag food.images.first, class: 'index-image' %>
         <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= food.name %></h5>
+              <p class="card-title"><%= food.name %></p>
+              <p><%= number_to_currency(food.price)%></p>
               <%= link_to "View more", food_item_path(food),  class: "btn btn-primary" %>
             </div>
         </div>
