@@ -10,6 +10,8 @@
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%# passing the user_type as a hidden field and give a value of @user_type which comming from  %>
+    <%= f.hidden_field :user_type, value: @user_type %>
   </div>
 
   <div class="form-actions">
