@@ -23,12 +23,16 @@ class ProfilesController < ApplicationController
   # POST /profiles or /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    # assign @profile.user_id to the current_user.id in the backend that when we careate the profile it will know which user own the profile 
     @profile.user_id = current_user.id
+    
 
     respond_to do |format|
       if @profile.save
+        # if params profile user_type is buyer and creating a new profile, after createing profile it will redirect to the root_path 
         if params[:profile][:user_type] == "buyer"
           format.html { redirect_to root_path, notice: "Profile was successfully created." }
+          # else it must be a seller and it will redirect ot the new_fodd_item_path
         else
           format.html { redirect_to new_food_item_path, notice: "Profile was successfully created." }
         end

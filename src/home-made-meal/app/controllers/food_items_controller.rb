@@ -1,12 +1,14 @@
 class FoodItemsController < ApplicationController
   before_action :set_food_item, only: %i[ show edit update destroy ]
+  # if user in not loged in user only can have access to the index and show page, nothing else
   before_action :authenticate_user!, except: [:index, :show]
-# add_to_cart action will append fooe item id to the session[:cart] which been initialize in appcontroller, and it will redirect to the shop page path. might change the path later
+# add_to_cart action will append food item id to the session[:cart] which been initialize in appcontroller, and it will redirect to the food_item show page path. might change the path later
   def add_to_cart
     id = params[:id].to_i
     session[:cart] << id unless session[:cart].include?(id)
     redirect_to food_item_path
   end
+  # remove_from_cart will delete items from session cart array, which has been initialized in app controller, and once is deleted it will redirect to the same page which is cart page
   def remove_from_cart
     id = params[:id].to_i
     session[:cart].delete(id)
@@ -19,6 +21,10 @@ class FoodItemsController < ApplicationController
 
   # GET /food_items/1 or /food_items/1.json
   def show
+    if params[:check] == "success"
+      @food_item.buyer.id = current.profile.id
+      @food_item.save
+    end
   end
 
   # GET /food_items/new
@@ -41,9 +47,9 @@ class FoodItemsController < ApplicationController
   # POST /food_items or /food_items.json
   def create
     @food_item = FoodItem.new(food_item_params)
-    # once the profile created we can assign the seller_id to the current_user.profile.id
+    # once the profile created we can assign the seller_id to the current_user.profile.id because it has passed as an attribute in the table and need to be assign from back-end
     @food_item.seller_id = current_user.profile.id
-    # assign the currernt_user.id to eh food_item.profile_id
+    # assign the food_item.profile_id the currernt_user.id 
     @food_item.profile_id = current_user.id
 
     respond_to do |format|
@@ -84,13 +90,8 @@ class FoodItemsController < ApplicationController
     def set_food_item
       @food_item = FoodItem.find(params[:id])
     end
-
-    # Only allow a list of trusted parameters through.
     
-
-
-
-    # images attribute has been added as a params to allow the image be created 
+    # images attribute has been added as a params to allow the multiple images to be added in the food_item table 
     def food_item_params
       params.require(:food_item).permit(:name, :description, :availability, :food_type, :price, :buyer_id, :seller_id, :profile_id, images: [])
     end

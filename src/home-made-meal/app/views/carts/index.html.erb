@@ -26,11 +26,10 @@
       <% end %>
   </div>
 <% else %> 
-
   <p>Your shopping cart is empty, please choose an item</p>
 <% end %>
 <h4>Sutotal: $<%= @subtotal %></h4>
-<% if current_user && current_user.profile %>
-  <%= link_to "Checkout", cart_path, class: "btn btn-warning block-primary"%>
+<% if current_user && current_user.profile && !@cart.empty? %>
+  <%= link_to "Checkout", payment_path(food_item_id: @cart), class: "btn btn-warning block-primary", method: :post %>
 <% end %>
 

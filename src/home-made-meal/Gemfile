@@ -58,3 +58,4 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
 gem "aws-sdk-s3", "~> 1.96"
+gem "stripe"
