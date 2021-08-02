@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_030419) do
+ActiveRecord::Schema.define(version: 2021_07_31_112243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 2021_07_24_030419) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "food_items", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -48,6 +53,16 @@ ActiveRecord::Schema.define(version: 2021_07_24_030419) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["profile_id"], name: "index_food_items_on_profile_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.bigint "food_item_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity", default: 1
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["food_item_id"], name: "index_line_items_on_food_item_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -79,5 +94,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_030419) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "food_items", "profiles"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "food_items"
   add_foreign_key "profiles", "users"
 end

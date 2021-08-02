@@ -1,9 +1,10 @@
-// Place all the styles related to the carts controller here.
+// Place all the styles related to the Carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.image-shopping-cart {
+.cart-show-image {
   display: block;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
+  border-radius: 5px;
 }

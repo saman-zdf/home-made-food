@@ -12,7 +12,8 @@
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to cart_path, class: "nav-link" do %>
+        <%# I should ask Nandini to see why it doesn't work %>
+          <%= link_to cart_path(@cart), class: "nav-link" do %>
             <i class="fas fa-shopping-cart"></i>
           <% end %>
         </li>
@@ -28,7 +29,6 @@
           <%= link_to "logout", logout_path, class: "nav-link", method: :delete%>
         </li>
         <% else %>
-        <%# I need to add the user_returnin for the log in path, if user is seller take them to their list page if the user is buyer take them to the root path or collection path %>
         <li class="nav-item">
           <%= link_to "Sign in", login_path(user_type: "returning_user"), class: "nav-link" %>
         </li>

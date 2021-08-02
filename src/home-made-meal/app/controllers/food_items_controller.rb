@@ -3,17 +3,17 @@ class FoodItemsController < ApplicationController
   # if user in not loged in user only can have access to the index and show page, nothing else
   before_action :authenticate_user!, except: [:index, :show]
 # add_to_cart action will append food item id to the session[:cart] which been initialize in appcontroller, and it will redirect to the food_item show page path. might change the path later
-  def add_to_cart
-    id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
-    redirect_to food_item_path
-  end
+  # def add_to_cart
+  #   id = params[:id].to_i
+  #   session[:cart] << id unless session[:cart].include?(id)
+  #   redirect_to food_item_path
+  # end
   # remove_from_cart will delete items from session cart array, which has been initialized in app controller, and once is deleted it will redirect to the same page which is cart page
-  def remove_from_cart
-    id = params[:id].to_i
-    session[:cart].delete(id)
-    redirect_to cart_path
-  end
+  # def remove_from_cart
+  #   id = params[:id].to_i
+  #   session[:cart].delete(id)
+  #   redirect_to cart_path
+  # end
   # GET /food_items or /food_items.json
   def index
     @food_items = FoodItem.all

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_action :initialize_session
-  before_action :load_cart
-  before_action :subtotal
+  # we include CurrentCart from concern dir in appcontroller to have an access to the helper method which is set_cart
+  include CurrentCart
+  before_action :set_cart
   before_action :set_user
 # set user action will give the option to distiguish the user who using the apps, if user is seller or buyer or returning user
   def set_user
@@ -20,17 +20,4 @@ class ApplicationController < ActionController::Base
       new_profile_path(user_type: params[:user][:user_type] ) || root_path 
     end
   end
-  private 
-  # initializin the session for cart and it will be appended by product id 
-    def initialize_session
-      session[:cart] ||= []
-    end
-    # loading the cart which has assign to the session[:cart] which has the params[:id] of food_item in it, when from FoodItem controller we add to the cart the item will be appended into the session[:cart] and if we remove from cart it will be deleted form session cart
-    def load_cart
-      @cart = FoodItem.find(session[:cart])
-    end
-    #  the subtotal action will calcualte the total of the item prices in the current shopping cart and will display it inside shopping cart page buy using the @subtotal instance variables 
-    def subtotal 
-      @subtotal = @cart.collect{|p| p.price.to_i}.sum
-    end
 end

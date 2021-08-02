@@ -1,0 +1,30 @@
+<% @cart.line_items.each do |item| %>
+  <div class="d-flex flex-row justify-content-between mt-4">
+    <div class="col">
+      <% if item.food_item.images.attached? %>
+        <%= image_tag item.food_item.images.first, class: "cart-show-image"%>
+      <% end %>
+    </div>
+    <div class="col align-self-center">
+      <h3><%= item.food_item.name %></h3>
+    </div>
+    <div class="col align-self-center">
+      <p><%= number_to_currency(item.total_price) %></p>
+    </div>
+    <div class="col align-self-center">
+      <p><%= item.quantity %></p>
+    </div>
+    <div class="col align-self-center">
+      <p><%= button_to "Remove item", item, class: "btn btn-danger", method: :delete %></p>
+    </div>
+  </div>
+  <hr>
+<% end %>
+<h3>Total: <%= number_to_currency(@cart.total_price) %></h3>
+<% if @cart %>
+  <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-info my-4" %>
+<% end %>
+<% if current_user && current_user.profile && (current_user.profile && current_user.id) %>
+  <%= link_to "Checkout", payment_path, class: "btn btn-warning", method: :post %>
+<% end %>
+
