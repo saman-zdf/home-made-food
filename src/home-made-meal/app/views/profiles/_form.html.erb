@@ -11,8 +11,9 @@
     <%= f.input :street_name %>
     <%= f.input :suburb %>
     <%= f.input :postcode %>
-    <%= f.select :state, Profile.states.keys %>
-    <%= f.hidden_field :user_type, value: user_type %>
+    <%= f.select :state, state: [ "NSW", "Victoria", "Queensland", "SA", "WA", "Tasmania", "NT"] %>
+    <%= f.file_field :image, accept: "image/png, image/jpg, image/jpeg" %>
+    <%= f.hidden_field :user_type, value: @user_type %>
   </div>
 
   <div class="form-actions">

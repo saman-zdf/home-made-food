@@ -27,7 +27,7 @@ class PaymentController < ApplicationController
     mode: 'payment',
     # These placeholder URLs will be replaced in a following step.
     success_url: "http://127.0.0.1:3000/?check=success",
-    cancel_url: 'http://127.0.0.1:3000/cancel',
+    cancel_url: 'http://127.0.0.1:3000/cart',
   })
   redirect_to session.url
   end

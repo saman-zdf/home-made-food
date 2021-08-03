@@ -1,0 +1,12 @@
+<%= simple_form_for(@review) do |f|%>
+<div class="form-inputs mt-3">
+    <%= f.input :comment, placeholder: "Please let us know what you think about our food" %>
+    <p>Rating</p>
+    <%= f.number_field :rating, min: 1, max: 5 %>
+    <%= f.hidden_field :food_item_id, value: @food_item.id %>
+  </div>
+
+  <div class="form-actions mt-3">
+    <%= f.button :submit, "Leave Comment",  class: 'btn btn-outline-info'  %>
+  </div>
+<% end %>

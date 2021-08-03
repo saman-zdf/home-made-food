@@ -14,6 +14,10 @@
     <div class="col align-self-center">
       <p><%= item.quantity %></p>
     </div>
+    <%# ask nandini,why you can add from cart show page  %>
+    <div class="col align-self-center">
+      <%# <%= link_to "+", item, method: :post %> 
+    </div>
     <div class="col align-self-center">
       <p><%= button_to "Remove item", item, class: "btn btn-danger", method: :delete %></p>
     </div>
@@ -21,10 +25,10 @@
   <hr>
 <% end %>
 <h3>Total: <%= number_to_currency(@cart.total_price) %></h3>
-<% if @cart %>
+<% if !@cart.line_items.empty? %>
   <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-info my-4" %>
 <% end %>
-<% if current_user && current_user.profile && (current_user.profile && current_user.id) %>
+<% if user_signed_in? %>
   <%= link_to "Checkout", payment_path, class: "btn btn-warning", method: :post %>
 <% end %>
 

@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-  # we include CurrentCart from concern dir in appcontroller to have an access to the helper method which is set_cart
+  # we include CurrentCart from concern dir in appcontroller to have an access to the helper method which is set_cart and using before_action that we can use the method before any other action anywhere it needed
   include CurrentCart
   before_action :set_cart
   before_action :set_user
+  
 # set user action will give the option to distiguish the user who using the apps, if user is seller or buyer or returning user
   def set_user
     @user_type = params[:user_type]

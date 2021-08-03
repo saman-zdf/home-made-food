@@ -28,6 +28,12 @@
         <li class="nav-item">
           <%= link_to "logout", logout_path, class: "nav-link", method: :delete%>
         </li>
+        <% if current_user && current_user.profile %>
+          <li class="nav-item">
+          <%# ask Nandini to wahy we get the error of routing doesn't matchpatch %>
+            <%= link_to "profile", "", class: "nav-link" %>
+          </li>
+        <% end %>
         <% else %>
         <li class="nav-item">
           <%= link_to "Sign in", login_path(user_type: "returning_user"), class: "nav-link" %>

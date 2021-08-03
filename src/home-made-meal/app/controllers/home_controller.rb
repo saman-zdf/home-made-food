@@ -11,6 +11,6 @@ class HomeController < ApplicationController
   end
   def show
     @food_item = FoodItem.find(params[:id])
-    @food_items = FoodItem.all
+    @reviews = Review.all
   end
 end
