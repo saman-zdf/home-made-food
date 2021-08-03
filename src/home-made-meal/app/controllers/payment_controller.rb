@@ -26,8 +26,8 @@ class PaymentController < ApplicationController
     line_items: line_items,
     mode: 'payment',
     # These placeholder URLs will be replaced in a following step.
-    success_url: "http://127.0.0.1:3000/?check=success",
-    cancel_url: 'http://127.0.0.1:3000/cart',
+    success_url: "#{root_url}?check=success",
+    cancel_url: root_url,
   })
   redirect_to session.url
   end

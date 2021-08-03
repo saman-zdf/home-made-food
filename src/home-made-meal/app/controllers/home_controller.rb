@@ -13,4 +13,5 @@ class HomeController < ApplicationController
     @food_item = FoodItem.find(params[:id])
     @reviews = Review.all
   end
+    
 end
