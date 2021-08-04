@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   # we include CurrentCart from concern dir in appcontroller to have an access to the helper method which is set_cart and using before_action that we can use the method before any other action anywhere it needed
   include CurrentCart
   before_action :set_cart

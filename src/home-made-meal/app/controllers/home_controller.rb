@@ -14,6 +14,7 @@ class HomeController < ApplicationController
     @reviews = Review.all
     if params[:checkout] == "success"
       @food_item.buyer_id = current_user.profile.id 
+      @food_item.sales_quantity += 1
       @food_item.save
     end
   end

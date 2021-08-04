@@ -93,6 +93,6 @@ class FoodItemsController < ApplicationController
     
     # images attribute has been added as a params to allow the multiple images to be added in the food_item table 
     def food_item_params
-      params.require(:food_item).permit(:name, :description, :availability, :food_type, :price, :buyer_id, :seller_id, :profile_id, :sales_count, images: [])
+      params.require(:food_item).permit(:name, :description, :availability, :food_type, :price, :buyer_id, :seller_id, :profile_id, :sales_quantity, images: [])
     end
 end

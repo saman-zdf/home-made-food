@@ -8,6 +8,7 @@
           <li class="list-group-item">Food type: <%= @food_item.food_type %></li>
         <li class="list-group-item">Price: <%= number_to_currency(@food_item.price) %></li>
         <li class="list-group-item">Seller: <%= @food_item.profile.username %></li>
+        <li class="list-group-item">Sold quantity: <%= @food_item.sales_quantity %></li>
     </div>
     <div class="col">
     <% if @food_item.images.attached? %>

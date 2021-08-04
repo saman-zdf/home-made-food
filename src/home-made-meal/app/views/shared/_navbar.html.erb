@@ -12,9 +12,11 @@
           <% end %>
         </li>
         <li class="nav-item">
-        <%# I should ask Nandini to see why it doesn't work %>
           <%= link_to cart_path(@cart), class: "nav-link" do %>
-            <i class="fas fa-shopping-cart fa-2x"></i>
+          <% if cart_has_item %>
+            
+            <span><i class="fas fa-shopping-cart fa-2x"></i><%= cart_has_more_than_one %></span>
+          <% end %>
           <% end %>
         </li>
       </ul>
