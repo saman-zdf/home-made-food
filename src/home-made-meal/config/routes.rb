@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     get "/login", :to => "devise/sessions#new" # Add a custom sign in route for user sign in
     delete "/logout", :to => "devise/sessions#destroy" # Add a custom sing out route for user sign out
     get "/sign_up", :to => "devise/registrations#new" # Add a Custom Route for Registrations
-    get "/profile", :to => "devise/registrations#edit" # Add a Custom Routes for Editing the Profile 
     devise_for :user
   end
   resources :profiles

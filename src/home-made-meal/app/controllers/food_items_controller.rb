@@ -22,9 +22,9 @@ class FoodItemsController < ApplicationController
   # GET /food_items/1 or /food_items/1.json
   def show
     if params[:check] == "success"
-      @food_item.buyer.id = current.profile.id
+      @food_item.buyer_id = current_user.profile.id 
       @food_item.save
-    end
+    end    
   end
 
   # GET /food_items/new

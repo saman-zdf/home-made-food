@@ -1,4 +1,4 @@
-<% if current_user && current_user.profile && current_user.profile.id  %>
+<% if current_user && current_user.profile  %>
   <%= simple_form_for(@food_item) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -9,7 +9,6 @@
       <%= f.input :availability %>
       <%= f.select :food_type, collection: [ "Carnivore", "Vegeterian", "Vegan"] %>
       <%= f.input :price %>
-      <%# added the file field for uploadinf an image, it accepts three different format and we can upload more than on image %>
       <%= f.file_field :images, accept: "image/png, image/jpg, image/jpeg", multiple: true  %>
     </div>
 

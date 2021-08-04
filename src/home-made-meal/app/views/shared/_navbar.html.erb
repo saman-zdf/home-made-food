@@ -8,13 +8,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to  root_path, class: "nav-link" do %>
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home fa-2x"></i>
           <% end %>
         </li>
         <li class="nav-item">
         <%# I should ask Nandini to see why it doesn't work %>
           <%= link_to cart_path(@cart), class: "nav-link" do %>
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart fa-2x"></i>
           <% end %>
         </li>
       </ul>
@@ -30,8 +30,10 @@
         </li>
         <% if current_user && current_user.profile %>
           <li class="nav-item">
-          <%# ask Nandini to wahy we get the error of routing doesn't matchpatch %>
-            <%= link_to "profile", "", class: "nav-link" %>
+          
+            <%= link_to edit_profile_path(current_user.profile), class: "nav-link" do %>
+              <i class="fas fa-user-circle fa-2x"></i>
+            <% end %>
           </li>
         <% end %>
         <% else %>

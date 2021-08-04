@@ -48,9 +48,8 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        @profile.user_id = current_user.id
-          format.html { redirect_to @profile, notice: "Profile was successfully updated." }
-          format.json { render :show, status: :ok, location: @profile }
+        format.html { redirect_to @profile, notice: "Profile was successfully updated." }
+        format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @profile.errors, status: :unprocessable_entity }

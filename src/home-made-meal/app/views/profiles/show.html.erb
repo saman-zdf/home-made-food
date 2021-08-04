@@ -44,6 +44,12 @@
   <strong>User:</strong>
   <%= @profile.user_id %>
 </p>
+<% if @profile.image.attached?  %>
+  <strong>Image: </strong>
+  <%= image_tag @profile.image %>
+<% end %>
+
+
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

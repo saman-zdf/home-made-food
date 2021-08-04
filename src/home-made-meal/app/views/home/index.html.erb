@@ -1,19 +1,27 @@
 <h1>welcom to our home made meal</h1>
-  <div class="row">
-    <% @food_items.each do |food| %>
-      <div class="col-md-4 my-4">
-        <div class="card" style="width: 18rem;">
-        <% if food.images.attached? %>
-          <%= image_tag food.images.first, class: 'index-image' %>
-        <% end %>
-            <div class="card-body">
-              <p class="card-title"><%= food.name %></p>
-              <p><%= number_to_currency(food.price)%></p>
-              <%= link_to "View more", show_path(food),  class: "btn btn-primary" %>
-            </div>
-        </div>
-      </div>
+<div class="search-container">
+  <div class="search-box">
+    <%= search_form_for @q, url: root_path, class: 'd-flex' do |f| %>
+      <%= f.search_field :food_type_cont, class: "form-control", placeholder: 'Carnivore/Vegetarian/Vegan' %>
+      <%= f.submit "Search", class: 'btn btn-outline-success mx-2'%>
     <% end %>
   </div>
+</div>
+<div class="row">
+  <% @food_items.each do |food| %>
+    <div class="col-md-4 my-4">
+      <div class="card" style="width: 18rem;">
+      <% if food.images.attached? %>
+        <%= image_tag food.images.first, class: 'index-image' %>
+      <% end %>
+          <div class="card-body">
+            <p class="card-title"><%= food.name %></p>
+            <p><%= number_to_currency(food.price)%></p>
+            <%= link_to "View more", show_path(food),  class: "btn btn-primary" %>
+          </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 

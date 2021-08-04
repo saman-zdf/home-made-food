@@ -30,6 +30,7 @@
         <td><%= food_item.profile_id %></td>
         <td><%= link_to 'Show', food_item %></td>
         <% if current_user && current_user.profile && (current_user.profile.id == food_item.seller.id) %>
+        <%= food_item %>
           <td><%= link_to 'Edit', edit_food_item_path(food_item) %></td>
           <td><%= link_to 'Destroy', food_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           

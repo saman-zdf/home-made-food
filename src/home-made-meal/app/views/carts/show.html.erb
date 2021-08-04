@@ -1,3 +1,4 @@
+
 <% @cart.line_items.each do |item| %>
   <div class="d-flex flex-row justify-content-between mt-4">
     <div class="col">
@@ -14,21 +15,19 @@
     <div class="col align-self-center">
       <p><%= item.quantity %></p>
     </div>
-    <%# ask nandini,why you can add from cart show page  %>
-    <div class="col align-self-center">
-      <%# <%= link_to "+", item, method: :post %> 
-    </div>
     <div class="col align-self-center">
       <p><%= button_to "Remove item", item, class: "btn btn-danger", method: :delete %></p>
     </div>
   </div>
   <hr>
+  <%# capturing the food_item.id and pass it to the payment_path as a argument for food id, than I can create a buyer id once the checkout is successful, I'm not sure if it's the right way to do this, but if I would use my checkout link inside @cart.line_items.each block it would create the checkout button for each food_item  %>
+  <% @id = item.food_item.id %>
 <% end %>
 <h3>Total: <%= number_to_currency(@cart.total_price) %></h3>
 <% if !@cart.line_items.empty? %>
   <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-info my-4" %>
 <% end %>
 <% if user_signed_in? %>
-  <%= link_to "Checkout", payment_path, class: "btn btn-warning", method: :post %>
+  <%= link_to "Checkout", payment_path(food_id: @id), class: "btn btn-warning", method: :post %>
 <% end %>
 
