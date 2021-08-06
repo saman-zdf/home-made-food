@@ -81,15 +81,6 @@ ActiveRecord::Schema.define(version: 2021_08_04_083953) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.text "comment"
-    t.integer "rating"
-    t.bigint "food_item_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_item_id"], name: "index_reviews_on_food_item_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,5 +98,4 @@ ActiveRecord::Schema.define(version: 2021_08_04_083953) do
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "food_items"
   add_foreign_key "profiles", "users"
-  add_foreign_key "reviews", "food_items"
 end

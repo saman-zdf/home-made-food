@@ -27,7 +27,7 @@ class PaymentController < ApplicationController
     line_items: line_items,
     mode: 'payment',
     # These placeholder URLs will be replaced in a following step.
-    success_url: "#{root_url}home/#{params[:food_id]}?checkout=success",
+    success_url: "#{root_url}home/show/#{params[:food_id]}?checkout=success",
     cancel_url: root_url,
   })
   redirect_to session.url

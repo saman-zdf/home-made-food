@@ -1,27 +1,40 @@
-<h1>welcom to our home made meal</h1>
-<div class="search-container">
-  <div class="search-box">
-    <%= search_form_for @q, url: root_path, class: 'd-flex' do |f| %>
-      <%= f.search_field :food_type_cont, class: "form-control", placeholder: 'Carnivore/Vegetarian/Vegan' %>
-      <%= f.submit "Search", class: 'btn btn-outline-success mx-2'%>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <% @food_items.each do |food| %>
-    <div class="col-md-4 my-4">
-      <div class="card" style="width: 18rem;">
-      <% if food.images.attached? %>
-        <%= image_tag food.images.first, class: 'index-image' %>
-      <% end %>
-          <div class="card-body">
-            <p class="card-title"><%= food.name %></p>
-            <p><%= number_to_currency(food.price)%></p>
-            <%= link_to "View more", show_path(food),  class: "btn btn-primary" %>
-          </div>
+<%# search %>
+  <section class="bg-dark text-light p-5">
+    <div class="container">
+      <div class="d-md-flex justify-content-center align-items-center flex-column">
+        <h3 class="mb-2 mb-md-0 text-center">
+          Search YourPlate
+        </h3>
+        <div class="input-group mt-3 search-input">
+          <%= search_form_for @q, url: index_path, class: 'input-group mt-3' do |f| %>
+            <%= f.search_field :food_type_cont, class: "form-control", placeholder: 'Carnivore/Vegetarian/Vegan' %>
+            <%= f.submit "Search", class: 'btn btn-warning btn-lg', id: "button-addon2"%>
+          <% end %>
+        </div>
       </div>
     </div>
-  <% end %>
-</div>
+  </section>
+
+<%# cards %>
+<section class="p-5 bg-warning text-dark">
+  <div class="container">
+    <div class="row text-center g-4">
+      <% @food_items.each do |food| %>
+        <div class='col'>
+            <div class="card bg-dark text-light h-100 mx-auto" style="width: 18rem;">
+              <% if food.images.attached? %>
+                <%= image_tag food.images.first, class: 'card-img-top' %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= food.name %></h5>
+                <p class="card-text"><%= number_to_currency(food.price)%></p>
+                <%= link_to "View more", show_path(food),  class: "btn btn-warning" %>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
 
 

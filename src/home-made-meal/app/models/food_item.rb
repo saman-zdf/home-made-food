@@ -11,8 +11,6 @@ class FoodItem < ApplicationRecord
   # this is for uploading an image, this will tell that we have many image to upload, we pass the attribute as a params in food item controller to be able for uploading the image, it can have multiple image for every food item, 
   has_many_attached :images
   # the food item can have many reviews form buyer
-  has_many :reviews, dependent: :destroy
-
   private 
     def ensure_not_referenced_by_any_line_item
       unless line_item.empty?
