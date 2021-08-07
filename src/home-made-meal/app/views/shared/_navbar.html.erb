@@ -13,9 +13,7 @@
       </li>
       <li class="nav-item">
         <%= link_to cart_path(@cart), class: "nav-link" do %>
-          <% if cart_has_item %>
             <span><i class="fas fa-shopping-cart fa-2x"></i><%= cart_has_more_than_one %></span>
-          <% end %>
         <% end %>
       </li>
       <li class="nav-item">
@@ -30,6 +28,9 @@
         <%= link_to edit_profile_path(current_user.profile), class: "nav-link" do %>
           <i class="fas fa-user-circle fa-2x"></i>
         <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Dashboard", food_items_path, class: 'nav-link'%>
       </li>
       <% end %>
     <% else %>

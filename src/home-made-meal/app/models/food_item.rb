@@ -9,8 +9,9 @@ class FoodItem < ApplicationRecord
   before_destroy :ensure_not_referenced_by_any_line_item
   # using enum to have a differnt type of food or diet, and useing select in the form for the food item 
   # this is for uploading an image, this will tell that we have many image to upload, we pass the attribute as a params in food item controller to be able for uploading the image, it can have multiple image for every food item, 
-  has_many_attached :images
-  # the food item can have many reviews form buyer
+  has_many_attached :images, dependent: :destroy
+  # 
+  has_many :comments
   private 
     def ensure_not_referenced_by_any_line_item
       unless line_item.empty?

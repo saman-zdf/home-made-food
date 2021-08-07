@@ -1,46 +1,47 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Food Items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Availability</th>
-      <th>Food type</th>
-      <th>Price</th>
-      <th>Buyer</th>
-      <th>Seller</th>
-      <th>Profile</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @food_items.each do |food_item| %>
-      <tr>
-        <td><%= food_item.name %></td>
-        <td><%= food_item.description %></td>
-        <td><%= food_item.availability %></td>
-        <td><%= food_item.food_type %></td>
-        <td><%= food_item.price %></td>
-        <td><%= food_item.buyer_id %></td>
-        <td><%= food_item.seller_id %></td>
-        <td><%= food_item.profile_id %></td>
-        <td><%= link_to 'Show', food_item %></td>
-        <% if current_user && current_user.profile && (current_user.profile.id == food_item.seller.id) %>
-        <%= food_item %>
-          <td><%= link_to 'Edit', edit_food_item_path(food_item) %></td>
-          <td><%= link_to 'Destroy', food_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<section class="py-5 text-center">
+  <div class="container">
+    <h1>Food Items</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Availability</th>
+          <th>Food type</th>
+          <th>Price</th>
+          <th>Buyer</th>
+          <th>Seller</th>
+          <th>Sold quantity</th>
           
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @food_items.each do |food_item| %>
+          <tr>
+            <td><%= food_item.name %></td>
+            <td><%= food_item.description %></td>
+            <td><%= food_item.availability %></td>
+            <td><%= food_item.food_type %></td>
+            <td><%= number_to_currency(food_item.price) %></td>
+            <td><%= food_item.buyer_id %></td>
+            <td><%= food_item.profile.username %></td>
+            <td><%= food_item.sales_quantity %></td>
             
+            <td><%= link_to 'Show', food_item, class: "btn btn-success" %></td>
+            <% if current_user && current_user.profile && (current_user.profile.id == food_item.seller.id) %>
+              <td><%= link_to 'Edit', edit_food_item_path(food_item), class: "btn btn-primary" %></td>
+              <td><%= link_to 'Destroy', food_item, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  <%= link_to 'New Food Item', new_food_item_path, class: "btn btn-primary" %>
+  </div>
+</section>
 
-<br>
-  <%= link_to 'New Food Item', new_food_item_path %>
+
+
+
 

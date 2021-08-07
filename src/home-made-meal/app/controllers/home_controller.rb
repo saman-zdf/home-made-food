@@ -11,7 +11,6 @@ class HomeController < ApplicationController
   end
   def show
     @food_item = FoodItem.find(params[:id])
-    @reviews = Review.all
     if params[:checkout] == "success"
       @food_item.buyer_id = current_user.profile.id 
       @food_item.sales_quantity += 1

@@ -17,3 +17,8 @@
 @import 'profiles';
 @import 'home';
 @import 'carts';
+.footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <%= simple_form_for([@food_item, @food_item.comments.build]) do |f|%>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.hidden_field :name, value: current_user.profile.username if current_user.profile.username %>
+      <%= f.input :content %>
+      <%= f.hidden_field :buyer_id, value: @food_item.buyer_id if @food_item.buyer_id %>
+      <%= f.hidden_field :seller_id, value: @food_item.seller_id if @food_item.seller_id %>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Post", class: 'btn btn-primary mt-3'%>
+    </div>
+  <% end %>
+<% end %>

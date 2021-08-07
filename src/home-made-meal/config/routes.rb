@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     get "/sign_up", :to => "devise/registrations#new" # Add a Custom Route for Registrations
     devise_for :user
   end
-  resources :profiles
-  resources :food_items
+  resources :profiles 
+  resources :food_items do
+    resources :comments
+  end
   resources :line_items
   resources :carts
   resources :reviews

@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container py-3">
   <h1>Create A New Profile</h1>
 
   <%= render 'form', profile: @profile, user_type: @user_type %>
 
-  <%= link_to 'Back', profiles_path %>
+  <%= link_to 'Back', profiles_path, class: 'btn btn-dark' %>
 </div>
+

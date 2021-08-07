@@ -1,25 +1,26 @@
-
-<div class="row my-5 justify-content-between">
-  <div class="col">
-    <ul class="list-group">
-      <li class="list-group-item">Name: <%= @food_item.name %></li>
-      <li class="list-group-item">Description: <%= @food_item.description %></li>
-      <li class="list-group-item">Availability: <%= @food_item.availability %></li>
-        <li class="list-group-item">Food type: <%= @food_item.food_type %></li>
-      <li class="list-group-item">Price: <%= number_to_currency(@food_item.price) %></li>
-      <li class="list-group-item">Seller: <%= @food_item.profile.username %></li>
+<div class="container">
+  <div class="row my-5 justify-content-between">
+    <div class="col">
+      <ul class="list-group">
+        <li class="list-group-item">Name: <%= @food_item.name %></li>
+        <li class="list-group-item">Description: <%= @food_item.description %></li>
+        <li class="list-group-item">Availability: <%= @food_item.availability %></li>
+          <li class="list-group-item">Food type: <%= @food_item.food_type %></li>
+        <li class="list-group-item">Price: <%= number_to_currency(@food_item.price) %></li>
+        <li class="list-group-item">Seller: <%= @food_item.profile.username %></li>
+    </div>
+    <div class="col">
+    <% if @food_item.images.attached? %>
+      <%= image_tag @food_item.images.first, class: "show-img" %>
+    <% end %>
+    </div>
   </div>
-  <div class="col">
-  <% if @food_item.images.attached? %>
-    <%= image_tag @food_item.images.first, class: "show-image" %>
+  <%# if the current user and current_user profile the same as currernt user profile id == @food_item seller id , current user will have a acees to the edit button %>
+  <% if current_user && current_user.profile && (current_user.profile.id == @food_item.seller.id) %>
+    <%= link_to 'Edit', edit_food_item_path(@food_item), class: "btn btn-primary my-2" %> 
+    <%= link_to 'Back', food_items_path, class: "btn btn-primary my-2"%>
   <% end %>
-  </div>
+  <%# else if the current user is no seller and if the cart include the item for buying it will show the add to current button if the current user exist and also has a pofile and once it add to the shopping cart it will show the msg to the user that the item has been added and back to shopping button will display  %>
 </div>
-<%# if the current user and current_user profile the same as currernt user profile id == @food_item seller id , current user will have a acees to the edit button %>
-<% if current_user && current_user.profile && (current_user.profile.id == @food_item.seller.id) %>
-  <%= link_to 'Edit', edit_food_item_path(@food_item), class: "btn btn-primary my-2" %> 
-  <%= link_to 'Back', food_items_path, class: "btn btn-primary my-2"%>
-<% end %>
-<%# else if the current user is no seller and if the cart include the item for buying it will show the add to current button if the current user exist and also has a pofile and once it add to the shopping cart it will show the msg to the user that the item has been added and back to shopping button will display  %>
 
 

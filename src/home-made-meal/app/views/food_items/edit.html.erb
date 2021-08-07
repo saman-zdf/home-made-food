@@ -1,6 +1,8 @@
-<h1>Editing Food Item</h1>
+<div class="container">
+  <h1>Editing Food Item</h1>
 
-<%= render 'form', food_item: @food_item %>
+  <%= render 'form', food_item: @food_item %>
 
-<%= link_to 'Show', @food_item %> |
-<%= link_to 'Back', food_items_path %>
+  <%= link_to 'Show', @food_item, class: "btn btn-primary" %> 
+  <%= link_to 'Back', food_items_path, class: "btn btn-dark" %>
+</div>
