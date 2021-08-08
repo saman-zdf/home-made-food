@@ -27,6 +27,8 @@
     <h3>Total: <%= number_to_currency(@cart.total_price) %></h3>
     <% if !@cart.line_items.empty? %>
       <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-info my-4" %>
+      <% else %>
+      <p class="lead">Your cart is currently empty, please continue to shop</p>
     <% end %>
     <% if user_signed_in? %>
       <%= link_to "Checkout", payment_path(food_id: @id), class: "btn btn-warning", method: :post %>

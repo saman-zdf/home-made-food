@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ show edit update destroy ]
   rescue_from  ActiveRecord::RecordNotFound, with: :invalid_cart
+  before_action :disable_footer, only:[:show]
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
@@ -52,7 +53,7 @@ class CartsController < ApplicationController
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil 
     respond_to do |format|
-      format.html { redirect_to cart_url, notice: "Your cart is currently empty" }
+      format.html { redirect_to index_url, notice: "Your cart is currently empty" }
       format.json { head :no_content }
     end
   end
@@ -71,5 +72,8 @@ class CartsController < ApplicationController
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to root_path
+    end
+    def disable_footer
+      @disable_footer = true
     end
 end

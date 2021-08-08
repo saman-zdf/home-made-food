@@ -27,7 +27,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to root_path, notice: "The item has been added to your cart." }
+        format.html { redirect_to index_path, notice: "The item has been added to your cart." }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new, status: :unprocessable_entity }
