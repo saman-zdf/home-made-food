@@ -26,7 +26,11 @@
 @import 'carts';
 .footer-page {
   position: relative;
+  bottom: 0;
   height: 80px;
   width: 100%;
   clear: both;
+}
+.bg-orange {
+  background-color: #ff9d0b;
 }
