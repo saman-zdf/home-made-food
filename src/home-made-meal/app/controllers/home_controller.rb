@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  after_action :delete_cart
   def hero 
     
   end
@@ -18,4 +19,10 @@ class HomeController < ApplicationController
     end
   end
 
+  private
+    def delete_cart
+      if params[:checkout] == "success"
+        @cart.line_items.delete_all
+      end
+  end
 end
