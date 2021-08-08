@@ -1,43 +1,30 @@
 <section class="py-5 text-center">
   <div class="container">
-    <h1>Food Items</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Availability</th>
-          <th>Food type</th>
-          <th>Price</th>
-          <th>Buyer</th>
-          <th>Seller</th>
-          <th>Sold quantity</th>
-          
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @food_items.each do |food_item| %>
-          <tr>
-            <td><%= food_item.name %></td>
-            <td><%= food_item.description %></td>
-            <td><%= food_item.availability %></td>
-            <td><%= food_item.food_type %></td>
-            <td><%= number_to_currency(food_item.price) %></td>
-            <td><%= food_item.buyer_id %></td>
-            <td><%= food_item.profile.username %></td>
-            <td><%= food_item.sales_quantity %></td>
-            
-            <td><%= link_to 'Show', food_item, class: "btn btn-success" %></td>
-            <% if current_user && current_user.profile && (current_user.profile.id == food_item.seller.id) %>
+    <h1>Details of items for sale</h1>
+    <div class="row">
+      <% @food_items.each do |food_item| %>
+      <div class="col-lg-4 g-3">
+        <ul class="list-group">
+          <li class="list-group-item">Name: <%= food_item.name %></li>
+          <li class="list-group-item">Description: <%= food_item.description %></li>
+          <li class="list-group-item">Availability: <%= food_item.availability %></li>
+          <li class="list-group-item">Food type: <%= food_item.food_type %></li>
+          <li class="list-group-item">Price: <%= number_to_currency(food_item.price) %></li>
+          <li class="list-group-item">Buyer Id:<%= food_item.buyer_id %></li>
+          <li class="list-group-item">Seller Id:<%= food_item.seller_id %></li>
+          <li class="list-group-item">Seller: <%= food_item.profile.username %></li>
+          <li class="list-group-item">Sold quantity: <%= food_item.sales_quantity %></li>
+          <li class="list-group-item"><%= link_to 'Show', food_item, class: "btn btn-success" %></li>
+          <li class="list-group-item"><% if current_user && current_user.profile && (current_user.profile.id == food_item.seller.id) %>
               <td><%= link_to 'Edit', edit_food_item_path(food_item), class: "btn btn-primary" %></td>
               <td><%= link_to 'Destroy', food_item, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <%= link_to 'New Food Item', new_food_item_path, class: "btn btn-primary" %>
+            <% end %></li>
+        </ul>
+      </div>
+      <% end %>
+      <div></div>
+    </div>
+  <%= link_to 'New Food Item', new_food_item_path, class: "btn btn-primary mt-3" %>
   </div>
 </section>
 

@@ -24,8 +24,9 @@
 @import 'profiles';
 @import 'home';
 @import 'carts';
-.footer {
-  bottom: 0;
-  position: absolute;
+.footer-page {
+  position: relative;
+  height: 80px;
   width: 100%;
+  clear: both;
 }

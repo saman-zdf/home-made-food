@@ -17,4 +17,5 @@ class HomeController < ApplicationController
       @food_item.save
     end
   end
+
 end
