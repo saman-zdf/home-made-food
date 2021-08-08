@@ -8,37 +8,37 @@
       <ul class="navbar-nav ms-auto text-light">
       <li class="nav-item">
         <%= link_to  index_path, class: "nav-link text-light" do %>
-        <i class="bi bi-house fa-2x"></i>
+        <i class="bi bi-house fa-3x"></i>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to cart_path(@cart), class: "nav-link text-light" do %>
-            <span class="text-light"><i class="bi bi-cart fa-2x"></i><%= cart_has_more_than_one %></span>
+            <span class="text-light"><i class="bi bi-cart fa-3x"></i><%= cart_has_more_than_one %></span>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to "Sell food", new_food_item_path, class: "nav-link text-light mt-3"%>
+        <%= link_to "Sell food", new_food_item_path, class: "nav-link text-light mt-1"%>
       </li>
       <li class="nav-item">
     <% if user_signed_in? %>
-      <%= link_to "logout", logout_path, class: "nav-link text-light mt-3", method: :delete%>
+      <%= link_to "logout", logout_path, class: "nav-link text-light mt-1", method: :delete%>
       </li>
     <% if current_user && current_user.profile %>
       <li class="nav-item">
         <%= link_to edit_profile_path(current_user.profile), class: "nav-link text-light" do %>
-          <i class="bi bi-person fa-2x"></i>
+          <i class="bi bi-person fa-3x"></i>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to "Dashboard", food_items_path, class: 'nav-link text-light mt-3'%>
+        <%= link_to "Dashboard", food_items_path, class: 'nav-link text-light mt-1'%>
       </li>
       <% end %>
     <% else %>
       <li class="nav-item">
-        <%= link_to "Sign in", login_path(user_type: "returning_user"), class: "nav-link text-light mt-3" %>
+        <%= link_to "Sign in", login_path(user_type: "returning_user"), class: "nav-link text-light mt-1" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Buy food", sign_up_path(user_type: "buyer"), class: "nav-link text-light mt-3"%>
+        <%= link_to "Buy food", sign_up_path(user_type: "buyer"), class: "nav-link text-light mt-1"%>
       </li>
     <% end %>
       </ul>
