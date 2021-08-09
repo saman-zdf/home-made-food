@@ -1,8 +1,9 @@
 <div class="container">
-  <h1>Edit Your Profile</h1>
+<h1>Edit Your Profile</h1>
+  <% if current_user && curretn_user.profile %>
+    <%= render 'form', profile: @profile %>
 
-  <%= render 'form', profile: @profile %>
-
-  <%= link_to 'Show', @profile, class: "btn btn-success my-2" %> 
-  <%= link_to 'Back', profiles_path, class: "btn btn-dark my-2" %>
+    <%= link_to 'Show', @profile, class: "btn btn-warning my-2" %> 
+    <%= link_to 'Back', profiles_path, class: "btn btn-dark my-2" %>
+  <% end %>
 </div>

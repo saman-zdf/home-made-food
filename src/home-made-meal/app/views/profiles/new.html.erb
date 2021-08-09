@@ -1,8 +1,10 @@
 <div class="container py-3">
+<% if user_signed_in? %>
   <h1>Create A New Profile</h1>
 
   <%= render 'form', profile: @profile, user_type: @user_type %>
 
   <%= link_to 'Back', profiles_path, class: 'btn btn-dark' %>
+<% end %>
 </div>
 
