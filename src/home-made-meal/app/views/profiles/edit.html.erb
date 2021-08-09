@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Edit Your Profile</h1>
-  <% if current_user && curretn_user.profile %>
+  <% if current_user && current_user.profile %>
     <%= render 'form', profile: @profile %>
 
     <%= link_to 'Show', @profile, class: "btn btn-warning my-2" %> 

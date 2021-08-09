@@ -31,11 +31,15 @@
 - Sitemap:
   - ![ERD](docs/YourPlate.png)
 - Screenshots
-
+  ![app screenshots](docs/screenshots/screen-1.png)
+  ![app screenshots](docs/screenshots/screen-2.png)
+  ![app screenshots](docs/screenshots/screen-3.png)
+  ![app screenshots](docs/screenshots/screen-4.png)
+  ![app screenshots](docs/screenshots/screen-5.png)
 - Target audience
   - The future employer, The people who wants to have a home made meal for thier daily food intake, the people who wants to have side incomes from their own house, my instructer at Coder Academy.
 - Tech stack (e.g. html, css, deployment platform, etc)
-- Ruby on Rails as a backend, html and css bootstrap as a frontend.
+- Ruby on Rails as a backend, html and css bootstrap as a frontend. I used the heroku for deploying the application. using the stripe as a third party for the payment gateway.
 
 ---
 
@@ -79,10 +83,10 @@
       ![ERD](docs/final-ERD.png)
 
 9. ## Explain the different high-level components (abstractions) in your app
-   - The app has the MVC pattern for the functionalityof the models, contoller and views. The MVC architectural pattern will enforce sepration for the logic which is inputs and presentaion logic that associated with the browser.
+   - The app has the MVC pattern for the functionality of the models, contoller and views. The MVC architectural pattern will enforce sepration for the logic which is inputs and presentaion logic that associated with the browser.
    - Using several Ruby gems like, bootstrap, Devise, simple_form, stripe, ransack for have a better functionality in our app.
-   - for the frone end I used mostly html and bootstrap scc framework.
-   - For database has been using the postgresql
+   - for the frontend I used mostly html and bootstrap css framework.
+   - For database has been using the postgresql to store all the input that come from browser by the user.
 
 ---
 
@@ -96,3 +100,114 @@
 ---
 
 11. ## Describe your projects models in terms of the relationships (active record associations) they have with each other
+
+- first model is the user model which has been implemented by the devise gem and it has assocation with the profile table and each user model has one profile and profile table belongs to user, it has one-to-one connection.
+
+```Ruby
+# User model
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  has_one :profile
+end
+# prodile model
+class Profile < ApplicationRecord
+  # the profile belong to the user and user will just have one profile
+  belongs_to :user
+end
+```
+
+- the second model is profile which have assocaition with user as mentioned above and also has a bi-directional-relation with food_item table, each profile can have many food_items and also it has a self join which distinguish the buyer and seller through the food_item model that each profile can have many food_item to sell or to buy with the food_item class and using the foreign key for seller_id or buyer_id. profile also have many comment t- recieve or tao make with food item table which the food tiem has a relation with commnet table. it also has a connection with active storage table that each profile can have one image.
+
+```Ruby
+class Profile < ApplicationRecord
+  # profile has mnay food item, user can create as many food item
+  has_many :food_item
+  # user will have food item to sell for the join table which food tiem and seller id will be the foreign key for food item
+  has_many :food_item_to_sell, class_name: "FoodItem", foreign_key: "seller_id"
+  has_many :food_item_to_buy, class_name: "FoodItem", foreign_key: "buyer_id"
+  # user can have many comment as buyer to make and as a seller to recieve
+  has_many :comments_to_make, class_name: "FoodItem", foreign_key: "buyer_id"
+  has_many :comments_to_receive, class_name: "FoodItem", foreign_key: "seller_id"
+  has_one_attached :image
+end
+
+```
+
+- third model is food item table, that belongs_to profile, belongs_to buyer with class of profile and also to the seller, the food item has many line_items that will be stored in the cart, food item a relation with the active storage table which can has many images through active storage table. food item can have many comments.
+
+```ruby
+class FoodItem < ApplicationRecord
+  # profile belongs to the fooditem and profile is a foreign key in the fooditem table
+  belongs_to :profile
+  # food item belong to the buyer with profile, but for the user it will be optional to be a buyer
+  belongs_to :buyer, class_name: "Profile", optional: true
+# food item also belongs ot the seller, but for the seller in order to create food item list, the seller has to exist buy havinfg an account and creating a profile
+  belongs_to :seller, class_name: "Profile"
+  has_many :line_items
+  before_destroy :ensure_not_referenced_by_any_line_item
+  # using enum to have a differnt type of food or diet, and useing select in the form for the food item
+  # this is for uploading an image, this will tell that we have many image to upload, we pass the attribute as a params in food item controller to be able for uploading the image, it can have multiple image for every food item,
+  has_many_attached :images, dependent: :destroy
+  #
+  has_many :comments
+  private
+    def ensure_not_referenced_by_any_line_item
+      unless line_items.empty?
+        errors.add(:base, 'Line Items present')
+        throw :abort
+      end
+    end
+end
+```
+
+- fourth model is line_items, which belongs to the cart model and also to the food item model
+
+```ruby
+class LineItem < ApplicationRecord
+  belongs_to :food_item
+  belongs_to :cart
+  def total_price
+    food_item.price * quantity
+  end
+end
+
+```
+
+- fifth model is cart, each cart can has many line items through line items we can add many line_items which has a items from food items inot the cart model.
+
+```ruby
+class Cart < ApplicationRecord
+  has_many :line_items, dependent: :destroy
+  # the add_food_item method will check if the list of items already includes the item we adding, if it does it will show the quantity and if it doesn't it will build a new line items for the user
+  def add_food_item(food_item)
+    current_item = line_items.find_by(food_item_id: food_item.id)
+      if current_item
+        # I couldn't do increment by adding current_item.quantity += 1, for "+" it would return an error for undifined method for "+", I used increment bulit in method from ruby and it workd fine
+        current_item.increment!(:quantity)
+      else
+        current_item = line_items.build(food_item_id: food_item.id)
+      end
+    current_item
+  end
+  def total_price
+    line_items.to_a.sum {|item| item.total_price}
+  end
+end
+```
+
+- last model is comment, it belongs to the food_item and for each food item buyer or seller can make many comments
+
+```ruby
+class Comment < ApplicationRecord
+  belongs_to :food_item
+end
+```
+
+---
+
+12. ## Discuss the database relations to be implemented in your application
+
+---
