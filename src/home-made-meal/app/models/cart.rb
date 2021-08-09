@@ -11,6 +11,7 @@ class Cart < ApplicationRecord
       end
     current_item
   end
+  # we get the total price of the all the item inside the line iems 
   def total_price
     line_items.to_a.sum {|item| item.total_price}
   end

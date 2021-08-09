@@ -24,13 +24,13 @@
       <%# capturing the food_item.id and pass it to the payment_path as a argument for food id, than I can create a buyer id once the checkout is successful, I'm not sure if it's the right way to do this, but if I would use my checkout link inside @cart.line_items.each block it would create the checkout button for each food_item  %>
       <% @id = item.food_item.id %>
     <% end %>
-    <h3>Total: <%= number_to_currency(@cart.total_price) %></h3>
-    <% if !@cart.line_items.empty? %>
-      <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-info my-4" %>
-      <%= link_to "Checkout", payment_path(food_id: @id), class: "btn btn-warning", method: :post %>
-      <% else %>
-      <p class="lead">Your cart is currently empty, please continue to shop</p>
-    <% end %>
+      <h3>Total: <%= number_to_currency(@cart.total_price) %></h3>
+      <% if !@cart.line_items.empty? %>
+        <%= button_to 'Empty Cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-info my-4" %>
+        <%= link_to "Checkout", payment_path(food_id: @id), class: "btn btn-warning", method: :post %>
+        <% else %>
+        <p class="lead">Your cart is currently empty, please continue to shop</p>
+      <% end %>
   </div>
 </section>
 

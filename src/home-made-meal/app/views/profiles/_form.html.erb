@@ -10,6 +10,7 @@
 
           <div class="form-content">
               <div class="row">
+          <% if user_signed_in?  %>
               <%= simple_form_for(@profile) do |f| %>
                 <%= f.error_notification %>
                 <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -34,6 +35,7 @@
                 <%= f.button :submit, class: "btn btn-warning my-3" %>
           </div>
       <% end %>
+    <% end %>
       </div>
     </div>
   </div>
