@@ -21,15 +21,19 @@ class PaymentController < ApplicationController
       }
     end
 
-    Stripe.api_key = Rails.application.credentials.dig(:stripe_api_key)
+    Stripe.api_key = Rails.application.credentials[:stripe][:secret]
     session = Stripe::Checkout::Session.create({
     payment_method_types: ['card'],
     line_items: line_items,
     mode: 'payment',
     # These placeholder URLs will be replaced in a following step.
-    success_url: "#{root_url}home/show/#{params[:food_id]}?checkout=success",
-    cancel_url: root_url,
+    success_url: "#{root_url}home/show/#{params[:food_id]}?checkout=success", 
+    cancel_url: "#{root_url}payment/cancel",
+    
   })
   redirect_to session.url
+  end
+  def cancel
+    
   end
 end

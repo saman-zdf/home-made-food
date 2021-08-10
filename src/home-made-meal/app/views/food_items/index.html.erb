@@ -3,6 +3,7 @@
     <h1>Details of items for sale</h1>
     <div class="row">
       <% @food_items.each do |food_item| %>
+    <% if current_user && current_user.profile && (current_user.profile.id == food_item.seller_id) %>
       <div class="col-lg-4 g-3">
         <ul class="list-group">
           <li class="list-group-item">Name: <%= food_item.name %></li>
@@ -21,6 +22,7 @@
             <% end %></li>
         </ul>
       </div>
+  <% end %>
       <% end %>
       <div></div>
     </div>
