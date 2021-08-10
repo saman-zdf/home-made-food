@@ -13,7 +13,7 @@
       </li>
       <li class="nav-item">
         <%= link_to cart_path(@cart), class: "nav-link text-light" do %>
-            <span class="text-light"><i class="bi bi-cart fa-2x"></i><%= cart_has_more_than_one %></span>
+            <span class="text-light"><i class="bi bi-cart fa-2x"></i><%= cart_count_items %></span>
         <% end %>
       </li>
       <% if current_user && current_user.profile %>

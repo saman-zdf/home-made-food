@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   include CurrentCart
   before_action :set_cart
   before_action :set_user
-
-  
 # set user action will give the option to distiguish the user who using the apps, if user is seller or buyer or returning user
   def set_user
     @user_type = params[:user_type]
