@@ -26,6 +26,11 @@
     </ul>
       <ul class="navbar-nav ms-auto text-light mt-1">
       <li class="nav-item"><%= link_to "Our Story", about_path, class: "nav-link text-light "%></li>
+      <% if has_role?(:admin) %>
+        <li class="nav-item">
+          <%= link_to "Admin", admin_path, class: "nav-link text-light"%>
+        </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to "Sell food", new_food_item_path, class: "nav-link text-light"%>
       </li>
