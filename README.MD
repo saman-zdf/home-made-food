@@ -1,25 +1,28 @@
-# Home made meal app
+# YourPlate
 
-1. ## Identification of the problem you are trying to solve by building this particular marketplace app:
+## Identification of the problem you are trying to solve by building this particular marketplace app:
 
 - Most people are busy during the day with a job and other tasks they could potentially have, and there is no time for them to have a good home made meal which can remind them of the family being together and having good tasty lunch or dinner. nowadays a lot of people because of lack of time, have to have fast food(some might call it junk food) to just make sure they fuel up for rest of the day and this might create a health issue in long run. with YourPlate application we will ensure the customers to get high quality home made food with fresh and local ingredient to have a best meal as if it has been mad in their own house. most of people prefer home mad cook, and we can provide the customer satsfaction by making the best home made meal for our consumers. this app can on the other hand help a lot of house wives to sart a new job as a home cook, which potentially can help them to have some side income. specially during pandemic a lot people has lost their job because of the pandemic and it can help them to get back to thier feed from their own house by cooking the food they love and sell it to customers.
 
 ---
 
-2. ## Why is it a problem that needs solving?
+## Why is it a problem that needs solving?
 
 - I have a look into it and just found not many application that could solve such a problem, this application can bring different benefit for people who will use this app. the people who got impacted by the pandemic and might lost their job could potentially have financial difficulty and spending most of their time in their house and have no solid income. they can simply cook a nice meal with one special ingredient which is love and sell it through this application. it will help them to have side incomes and if they enjoy cooking they are doing something they love. for the people who is the consumer, it will give them an option to have really tasty and healthy food which can remind them of good days of their life when they have been gathering with their family and having a good time with good meals. most people have no time to cook their food but still, they would love to have a nice meal for a day after work and through this application we can provide such a desire.
 
 ---
 
-3. ## The Application link
-   - [https://food-fx.herokuapp.com](https://food-fx.herokuapp.com/)
-4. ## The Application Github repo
-   - [Github Repository](https://github.com/saman-zdf/home-made-food)
+## The Application link
+
+- [https://food-fx.herokuapp.com](https://food-fx.herokuapp.com/)
+
+## The Application Github repo
+
+- [Github Repository](https://github.com/saman-zdf/home-made-food)
 
 ---
 
-5. ## Description of your marketplace app (website), including:
+## Description of your marketplace app (website), including:
 
 - Purpose:
   - The main purpose of this app is to give people the opportunity of having a job from their own house that can help them to have some income during pandemic and it also give some sellers who love cooking the option to do something they really love. it can give the customer the option to have a healty home made food instead of fast food, and it will be healthier to have a fresh home made meal. this app also will help the people who looking for work as a cook, it can be a starter for them to show their talent in cooking food.
@@ -43,7 +46,7 @@
 
 ---
 
-6. ## User story for the App
+## User story for the App
 
 - As a user, I need to be able to have an personal account that I can use on this application
 - As a user who sells food I would like to be able to list my food for the potential buyer have a description price, etc.
@@ -61,51 +64,52 @@
 
 ---
 
-7. ## Wireframe of the App
-   ![Wireframes](docs/Wireframe/Desktop-1.png)
-   ![Wireframes](docs/Wireframe/Desktop-2.png)
-   ![Wireframes](docs/Wireframe/Desktop-3.png)
-   ![Wireframes](docs/Wireframe/Desktop-4.png)
-   ![Wireframes](docs/Wireframe/Desktop-5.png)
-   ![Wireframes](docs/Wireframe/Desktop-6.png)
-   ![Wireframes](docs/Wireframe/Desktop-7.png)
-   ![Wireframes](docs/Wireframe/mobile1.png)
-   ![Wireframes](docs/Wireframe/mobile2.png)
-   ![Wireframes](docs/Wireframe/mobile3.png)
+## Wireframe of the App
+
+![Wireframes](docs/Wireframe/Desktop-1.png)
+![Wireframes](docs/Wireframe/Desktop-2.png)
+![Wireframes](docs/Wireframe/Desktop-3.png)
+![Wireframes](docs/Wireframe/Desktop-4.png)
+![Wireframes](docs/Wireframe/Desktop-5.png)
+![Wireframes](docs/Wireframe/Desktop-6.png)
+![Wireframes](docs/Wireframe/Desktop-7.png)
+![Wireframes](docs/Wireframe/mobile1.png)
+![Wireframes](docs/Wireframe/mobile2.png)
+![Wireframes](docs/Wireframe/mobile3.png)
 
 ---
 
-8. ## An ERD of the App
+## An ERD of the App
 
-   1. ### Initial EDR
-      ![ERD](docs/initial-ERD.png)
-   2. ### Final Erd
-      ![ERD](docs/final-ERD.png)
+1.  ### Initial EDR
+    ![ERD](docs/initial-ERD.png)
 
-9. ## Explain the different high-level components (abstractions) in your app
-   - The app has the MVC pattern for the functionality of the models, contoller and views. The MVC architectural pattern will enforce sepration for the logic which is inputs and presentaion logic that associated with the browser.
-   - Using several Ruby gems like, bootstrap, Devise, simple_form, stripe, ransack for have a better functionality in our app.
-   - for the frontend I used mostly html and bootstrap css framework.
-   - For database has been using the postgresql to store all the input that come from browser by the user.
+## Explain the different high-level components (abstractions) in your app
+
+- The app has the MVC pattern for the functionality of the models, contoller and views. The MVC architectural pattern will enforce sepration for the logic which is inputs and presentaion logic that associated with the browser.
+- Using several Ruby gems like, bootstrap, Devise, simple_form, stripe, ransack, rolify, cancancan to have more feature and functionality within the app.
+- for the frontend I used mostly html and bootstrap css framework.
+- For database has been using the postgresql to store all the input that come from browser by the user.
 
 ---
 
-10. ## Detail any third party services that your app will use
+## Detail any third party services that your app will use
 
 - Stripe: this is a third party payment processor and it can process each transaction through the application of different businesses in one merchant account(the account which accepts the different credit card for the payment). when the user sign up to the application they will instantly have a access to the stripe payment processing andd they do not need to go through all the step for opening the merchant account.
 - Postgrsql database: the Ruby on Rails application by default using SQlite3 as a database which is a lightweight portable and user friendly in a low memory environment. but for the highly compldx applications which need more reliablity for the data integrity the postgresSQL is more flexible and robust. in PostgreSQL the server program is in charge of manage all the database files and accept any conection which comes from the client application. the postgres can handle several concurent connections from clients. it can executes all the request in the database from the client and send back the result back to the client.
 
-- AWS S3 for uploading image: Amazon S3 is a web service that the developer can store or retrieve any data by using this web service. it is highly scalable and reliable and also cheap for data storaging. in this application we create a S3 bucket to reside all the image files that comes from the user. we needed to set up authetication and access control that only the bucket owner can have a access to the data inside the the aws.
+- AWS S3 for uploading image: Amazon S3 is a web service that the developer can store or retrieve any data by using this web service. it is highly scalable and reliable and also cheap for data storaging. in this application we create a S3 bucket to reside all the image files that comes from the user. we needed to set up authetication and access control that only the bucket owner can have a access to the data inside the the aws. once all the step is done we need
 
 ---
 
-11. ## Describe your projects models in terms of the relationships (active record associations) they have with each other
+## Describe your projects models in terms of the relationships (active record associations) they have with each other
 
 - first model is the user model which has been implemented by the devise gem and it has assocation with the profile table and each user model has one profile and profile table belongs to user, it has one-to-one connection.
 
 ```Ruby
 # User model
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -198,7 +202,7 @@ class Cart < ApplicationRecord
 end
 ```
 
-- last model is comment, it belongs to the food_item and for each food item buyer or seller can make many comments
+- Comment model, it belongs to the food_item and for each food item buyer or seller can make many comments, and only the admin will have the ability to delete any comments
 
 ```ruby
 class Comment < ApplicationRecord
@@ -206,8 +210,67 @@ class Comment < ApplicationRecord
 end
 ```
 
+- The ability model is comming from cancancan gem and in this model we can specify user can have different type of roles whitin the app, for example only admin can delete the comments from the comment list.
+
+```Ruby
+class Ability
+  include CanCan::Ability
+  def initialize(user)
+      user ||= User.new # guest user (not logged in)
+      if user.has_role? :admin
+        can :manage, :all
+      else
+        can :read, :all
+      end
+  end
+end
+```
+
 ---
 
-12. ## Discuss the database relations to be implemented in your application
+- The role model is the model for rolify gem and it has and belong to many user, from user table we can create our admin and associate ti with role model
+
+```Ruby
+class Role < ApplicationRecord
+  has_and_belongs_to_many :users, :join_table => :users_roles
+
+  belongs_to :resource,
+             :polymorphic => true,
+             :optional => true
+
+
+  validates :resource_type,
+            :inclusion => { :in => Rolify.resource_types },
+            :allow_nil => true
+
+  scopify
+end
+```
 
 ---
+
+## Discuss the database relations to be implemented in your application
+
+- User table has two associations. 1. has many and belong tho the role table, 2. has only one profile
+- Profile table has 4 associations. 1. it belongs to the user, 2. it has many food, also it has many food item to sell with the class of fooditem, and a foreign key of seller_id, and has many to buy with the class of fooditem and the foreign key of buyer_id. 3. it has many comments to make with the class of comment which is a join table as a class of food_item with foreign key of buyer_id. 4. it has one attached image from active storage table.
+- FoodItem table has 4 associations, 1. it belong to profile, 2. it belongs to the buyer with the profile class, it belongs to the seller with the profile class as a join table. 3. it has many line_items. 4. it has many attached images from active storage tables. 5. it has many comments.
+- LineItem table has 2 association. 1. it belongs to the food_item table. 2. it belongs to the cart table.
+- Cart table has 1 association. it has many line items and it is dependent destroy.
+- Comment table has only one association with fooditem table.
+- Role table has 2 association. 1. it has and belogns to the user table. 2. it belongs to the resources(which I don't know how does this work)
+
+---
+
+## Provide your database schema design
+
+![FinalERD](docs/final-ERD-.png)
+
+---
+
+## Describe the way tasks are allocated and tracked in your project
+
+- ![FinalERD](docs/trello/trello-1.png)
+- ![FinalERD](docs/trello/trello-2.png)
+- ![FinalERD](docs/trello/trello-3.png)
+- ![FinalERD](docs/trello/trello-4.png)
+- ![FinalERD](docs/trello/trello-5.png)
