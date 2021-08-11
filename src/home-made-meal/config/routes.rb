@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/home/show/:id', to: 'home#show', as: 'show'
   get '/home/index', to: 'home#index', as: 'index'
   get '/home/about', to: 'home#about', as: 'about'
+  get '/home/admin', to: 'home#admin', as: 'admin'
   devise_scope :user do
     get "/login", :to => "devise/sessions#new" # Add a custom sign in route for user sign in
     delete "/logout", :to => "devise/sessions#destroy" # Add a custom sing out route for user sign out

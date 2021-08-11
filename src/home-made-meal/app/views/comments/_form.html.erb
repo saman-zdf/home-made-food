@@ -8,9 +8,7 @@
       <%= f.input :content %>
       <%= f.hidden_field :buyer_id, value: @food_item.buyer_id if @food_item.buyer_id %>
       <%= f.hidden_field :seller_id, value: @food_item.seller_id if @food_item.seller_id %>
-
     </div>
-
     <div class="form-actions">
       <%= f.submit "Post", class: 'btn btn-primary mt-3'%>
     </div>

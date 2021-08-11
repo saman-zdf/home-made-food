@@ -6,7 +6,7 @@
     <hr class="bg-warning w-100">
     </div>
     <div>
-    <% if current_user && current_user.profile && (current_user.profile.id == @food_item.seller_id) %> 
+    <% if has_role?(:admin) %> 
       <%= link_to "Delete", [comment.food_item, comment], class: "btn btn-danger", method: :delete, data: { confrim: "Are you sure?"}  %>
     <% end %>
     </div>

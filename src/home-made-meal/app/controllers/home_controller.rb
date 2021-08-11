@@ -23,6 +23,13 @@ class HomeController < ApplicationController
   def about
   end
 
+  def admin
+    @users = User.all
+    @profile = Profile.all 
+    @food_items = FoodItem.all 
+    @comments = Comment.all
+  end
+
   private
   # After successful checkout delete all the items in cart line items 
     def delete_cart

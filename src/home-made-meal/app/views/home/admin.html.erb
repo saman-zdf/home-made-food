@@ -1,0 +1,89 @@
+<% if has_role?(:admin) %>
+  <section class="p-5">
+    <div class="container">
+      <table class='table table-striped text-center'>
+        <thead>
+          <tr>
+            <th>Users</th>
+            <th>FoodItems</th>
+            <th>comments</th>
+            <th>Buyer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @users.count %></td>
+            <td><%= @food_items.count %></td>
+            <td><%= @comments.count %></td>
+          <% buyer_count = [] %>
+            <% @food_items.each do |food_item| %>
+                <% if food_item.buyer_id.present? %>
+                  <% buyer_count << food_item.buyer_id %>
+                <% end %>
+            <% end %>
+          <td><%= buyer_count.size %></td>
+          </tr>
+        </tbody>
+      </table>
+      <hr class="bg-warning py-5">
+      <h1>All of the Food Item</h1>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Food type</th>
+          <th>Availability</th>
+          <th>Price</th>
+          <th>Sales quantity</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @food_items.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= food.description %></td>
+            <td><%= food.food_type %></td>
+            <td><%= food.availability %></td>
+            <td><%= food.price %></td>
+            <td><%= food.sales_quantity %></td>
+            <td><%= link_to 'Show', food, class: "btn btn-success" %></td>
+            <td><%= link_to 'Edit', edit_food_item_path(food), class: "btn btn-primary" %></td>
+            <td><%= link_to 'Destroy', food, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr class="bg-warning py-5">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Content</th>
+          <th>Buyer Id</th>
+          <th>Seller Id</th>
+          <th>Food Item Id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment|%>
+          <tr>
+            <td><%= comment.name%></td>
+            <td><%= comment.content%></td>
+            <td><%= comment.buyer_id %></td>
+            <td><%= comment.seller_id %></td>
+            <td><%= comment.food_item_id %></td>
+            <td><%= link_to 'Destroy', [comment.food_item, comment], class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </section>
+<% else %>
+  <div class="container p-5">
+    <h2>You not belong here, please check the other pages</h2>
+  </div>
+  
+<% end %>
