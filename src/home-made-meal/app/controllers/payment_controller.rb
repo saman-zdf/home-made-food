@@ -1,8 +1,5 @@
 class PaymentController < ApplicationController
-
-  
   def index
-
   end
   
   def create

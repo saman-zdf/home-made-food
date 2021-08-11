@@ -10,7 +10,6 @@ module HomeMadeMeal
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    config.assets.paths << "#{Rails.root}/app/assets/videos"
     config.assets.check_precompiled_asset = false
     config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.

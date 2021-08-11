@@ -6,7 +6,8 @@ class HomeController < ApplicationController
   def index
     # assign user_type to params[:user_type] if the params[:user_type] exist
     @user_type = params[:user_type] if params[:user_type]
-    @q = FoodItem.ransack(params[:q])
+    # including image attachment to the fooditem to eliminate N + 1 queries 
+    @q = FoodItem.includes(:images_attachments).ransack(params[:q])
     @food_items = @q.result(distinct: true)
   end
 
