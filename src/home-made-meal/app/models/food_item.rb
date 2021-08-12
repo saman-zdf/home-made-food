@@ -5,7 +5,7 @@ class FoodItem < ApplicationRecord
   belongs_to :buyer, class_name: "Profile", optional: true
 # food item also belongs ot the seller, but for the seller in order to create food item list, the seller has to exist buy havinfg an account and creating a profile
   belongs_to :seller, class_name: "Profile"
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
   before_destroy :ensure_not_referenced_by_any_line_item
   # using enum to have a differnt type of food or diet, and useing select in the form for the food item 
   # this is for uploading an image, this will tell that we have many image to upload, we pass the attribute as a params in food item controller to be able for uploading the image, it can have multiple image for every food item, 
