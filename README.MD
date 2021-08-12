@@ -64,6 +64,33 @@
 
 ---
 
+## User journey
+
+1. Seller
+
+- User as a seller need to create an account
+- user as a seller need to create a profile
+- user as a seller if the user wants to sell any item like food needs to input the details of the food item.
+- User as a seller can edit the food item user has to create or delete it.
+- User as a seller can buy the other's food if he/she wish to.
+
+2. Buyer
+
+- User as a buyer need to create an account
+- User as a buyer need to create a profile
+- User as a buyer can search the food item
+- User as a buyer can add the item to the cart
+- User as a buyer can delete items from the cart
+- User as a buyer has an ability to checkout and pay for the food he/she chose.
+
+3. Guest user
+
+- User as a guest can search for the item
+- User as a guest can browse through app
+- User as a guest can't buy or sell anything unless creating an account
+
+---
+
 ## Wireframe of the App
 
 ![Wireframes](docs/Wireframe/Desktop-1.png)
@@ -73,9 +100,13 @@
 ![Wireframes](docs/Wireframe/Desktop-5.png)
 ![Wireframes](docs/Wireframe/Desktop-6.png)
 ![Wireframes](docs/Wireframe/Desktop-7.png)
+![Wireframes](docs/Wireframe/Tablet-1.png)
+![Wireframes](docs/Wireframe/Tablet-2.png)
+![Wireframes](docs/Wireframe/Tablet-3.png)
 ![Wireframes](docs/Wireframe/mobile1.png)
 ![Wireframes](docs/Wireframe/mobile2.png)
 ![Wireframes](docs/Wireframe/mobile3.png)
+![Wireframes](docs/Wireframe/mobile4.png)
 
 ---
 
