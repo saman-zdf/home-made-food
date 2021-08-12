@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :reviews
   post "payment/index", to: "payment#create", as: "payment"
   get 'payment/cancel', to: 'payment#cancel', as: 'payment_cancel'
+  get 'payment/success', to: 'payment#success', as: 'payment_success'
 end
