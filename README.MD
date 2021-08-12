@@ -89,6 +89,12 @@
 - User as a guest can browse through app
 - User as a guest can't buy or sell anything unless creating an account
 
+4. Admin
+
+- Admin has a access to all the content of the app
+- Admin can see how many food has been listed
+- Admin see how many comment has been added and he/she can delete any comment if it's not appropriate.
+
 ---
 
 ## Wireframe of the App
