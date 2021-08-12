@@ -113,7 +113,7 @@
 ## An ERD of the App
 
 1.  ### Initial EDR
-    ![ERD](docs/initial-ERD.png)
+    ![ERD](docs/initialERD.png)
 
 ## Explain the different high-level components (abstractions) in your app
 
