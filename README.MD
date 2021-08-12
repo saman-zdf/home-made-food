@@ -2,7 +2,7 @@
 
 ## Identification of the problem you are trying to solve by building this particular marketplace app:
 
-- Most people are busy during the day with a job and other tasks they could potentially have, and there is no time for them to have a good home made meal which can remind them of the family being together and having good tasty lunch or dinner. nowadays a lot of people because of lack of time, have to have fast food(some might call it junk food) to just make sure they fuel up for rest of the day and this might create a health issue in long run. with YourPlate application we will ensure the customers to get high quality home made food with fresh and local ingredient to have a best meal as if it has been mad in their own house. most of people prefer home mad cook, and we can provide the customer satsfaction by making the best home made meal for our consumers. this app can on the other hand help a lot of house wives to sart a new job as a home cook, which potentially can help them to have some side income. specially during pandemic a lot people has lost their job because of the pandemic and it can help them to get back to thier feed from their own house by cooking the food they love and sell it to customers.
+- Most people are busy during the day with a job and other tasks they could potentially have, and there is no time for them to have a good home made meal which can remind them of the family being together and having good tasty lunch or dinner. nowadays a lot of people because of lack of time, have to have fast food(some might call it junk food) to just make sure they fuel up for rest of the day and this might create a health issue in long run. with YourPlate application we will ensure the customers to get high quality home made food with fresh and local ingredient to have a best meal as if it has been mad in their own house. most of people prefer home mad cook, and we can provide the customer satsfaction by making the best home made meal for our consumers.A lot of people have lost their job due to the pandemic. They are stuck at home cooking and eating. YourPlate helps people to earn an income from home by providing cooked meals to others, and provides healthier and tastier options for users who currently can generally only order fast food. Home cooked food can warm the soul. It is food cooked with love. YourPlate will remind people of family gatherings and good times.
 
 ---
 
@@ -86,25 +86,27 @@
 
 ## Explain the different high-level components (abstractions) in your app
 
-- The app has the MVC pattern for the functionality of the models, contoller and views. The MVC architectural pattern will enforce sepration for the logic which is inputs and presentaion logic that associated with the browser.
-- Using several Ruby gems like, bootstrap, Devise, simple_form, stripe, ransack, rolify, cancancan to have more feature and functionality within the app.
-- for the frontend I used mostly html and bootstrap css framework.
-- For database has been using the postgresql to store all the input that come from browser by the user.
+- The app has the MVC pattern for the functionality of the models, controller, and views. The MVC architectural pattern will enforce separation for the logic which is inputs and presentation logic associated with the browser.
+- if the user wants to sell food through this app by clicking the sell food link the view send a request to the food item controller and in the controller new action send a request to the food item model to filling the attributes of the corresponding model, if the user has an account and created a profile user can create a food item list, if not in the new action there is a condition the user needs to have a profile it will send a request to the profile model to let the user fill the attributes of the table of the corresponding model and will send a response to the controller and from profile controller will response goes back to the user to create a profile. the same procedure will take action for the creating account. once the step above is done the food item has been created from the home controller we query all the food items from the food item model and will show it from index action to the index HTML.
+  if the user is the buyer and he wants to buy an item, the user needs to create an account, we set the user type for the buyer and if the user type is buyer user just need to create an account and profile which the request goes first to devise which is responsible to create an account and then an application controller, we check if the user type is buyer create and profile, where the request goes to the profile controller and from new profile, action request goes to the profile model to get permission to fill the attributes of the corresponding table, once all the step is done, now the user buyer can choose an item an added to their cart. if the user chooses to add an item to the cart the request first goes to line items in creating action to get the specific food item id and added to the cart. from there if the user wants to check out the request goes to the payment controller to create action where it calls for the stripe API to do the money transaction and will add the item to the list of the sold item.
+- Using several Ruby gems like bootstrap, Devise, simple_form, stripe, ransack, rolify, cancancan to have more features and functionality within the app.
+- for the frontend, I used mostly HTML and bootstrap CSS framework.
+- For database has been using PostgreSQL to store all the input that comes from a browser by the user.
 
 ---
 
 ## Detail any third party services that your app will use
 
-- Stripe: this is a third party payment processor and it can process each transaction through the application of different businesses in one merchant account(the account which accepts the different credit card for the payment). when the user sign up to the application they will instantly have a access to the stripe payment processing andd they do not need to go through all the step for opening the merchant account.
-- Postgrsql database: the Ruby on Rails application by default using SQlite3 as a database which is a lightweight portable and user friendly in a low memory environment. but for the highly compldx applications which need more reliablity for the data integrity the postgresSQL is more flexible and robust. in PostgreSQL the server program is in charge of manage all the database files and accept any conection which comes from the client application. the postgres can handle several concurent connections from clients. it can executes all the request in the database from the client and send back the result back to the client.
+- Stripe: this is a third-party payment processor and it can process each transaction through the application of different businesses in one merchant account(the account which accepts the different credit card for the payment). when the user signs up to the application they will instantly have access to the stripe payment processing and they do not need to go through all the steps for opening the merchant account.
+- PostgreSQL database: the Ruby on Rails application by default uses SQlite3 as a database which is lightweight portable and user-friendly in a low memory environment. but for the highly complex applications which need more reliability for data integrity, PostgreSQL is more flexible and robust. in PostgreSQL, the server program is in charge of manage all the database files and accept any connection which comes from the client application. the Postgres can handle several concurrent connections from clients. it can execute all the requests in the database from the client and send the result back to the client.
 
-- AWS S3 for uploading image: Amazon S3 is a web service that the developer can store or retrieve any data by using this web service. it is highly scalable and reliable and also cheap for data storaging. in this application we create a S3 bucket to reside all the image files that comes from the user. we needed to set up authetication and access control that only the bucket owner can have a access to the data inside the the aws. once all the step is done we need
+- AWS S3 for uploading an image: Amazon S3 is a web service that the developer can store or retrieve any data by using this web service. it is highly scalable and reliable and also cheap for data storage. in this application we create an S3 bucket to reside all the image files that comes from the user. we needed to set up authentication and access control that only the bucket owner can have access to the data inside the aws. once all the step is done we need to get the access secret key and secret key to put them in the credentials file to have the access to the bucket for uploading the files.
 
 ---
 
 ## Describe your projects models in terms of the relationships (active record associations) they have with each other
 
-- first model is the user model which has been implemented by the devise gem and it has assocation with the profile table and each user model has one profile and profile table belongs to user, it has one-to-one connection.
+- first model is the user model which has been implemented by the devise gem and it has an association with the profile table and each user model has one profile and the profile table belongs to the user, it has a one-to-one connection.
 
 ```Ruby
 # User model
@@ -123,7 +125,7 @@ class Profile < ApplicationRecord
 end
 ```
 
-- the second model is profile which have assocaition with user as mentioned above and also has a bi-directional-relation with food_item table, each profile can have many food_items and also it has a self join which distinguish the buyer and seller through the food_item model that each profile can have many food_item to sell or to buy with the food_item class and using the foreign key for seller_id or buyer_id. profile also have many comment t- recieve or tao make with food item table which the food tiem has a relation with commnet table. it also has a connection with active storage table that each profile can have one image.
+- the second model is a profile that has an association with the user as mentioned above and also has a bi-directional-relation with food_item table, each profile can have many food_items, and also it has a self join which distinguish the buyer and seller through the food_item model that each profile can have many food_item to sell or to buy with the food_item class and using the foreign key for seller_id or buyer_id. the profile also has many comments t- receive or tao make with food item table which the food item has a relation with comment table. it also has a connection with an active storage table that each profile can have one image.
 
 ```Ruby
 class Profile < ApplicationRecord
@@ -140,7 +142,7 @@ end
 
 ```
 
-- third model is food item table, that belongs_to profile, belongs_to buyer with class of profile and also to the seller, the food item has many line_items that will be stored in the cart, food item a relation with the active storage table which can has many images through active storage table. food item can have many comments.
+- third model is the food item table, that belongs_to profile, belongs_to buyer with the class of profile and also to the seller, the food item has many line_items that will be stored in the cart, food item a relation with the active storage table which can have many images through active storage table. food items can have many comments.
 
 ```ruby
 class FoodItem < ApplicationRecord
@@ -180,7 +182,7 @@ end
 
 ```
 
-- fifth model is cart, each cart can has many line items through line items we can add many line_items which has a items from food items inot the cart model.
+- fifth model is a cart, each cart can have many line items through line items we can add many line_items which have items from food items into the cart model.
 
 ```ruby
 class Cart < ApplicationRecord
@@ -202,7 +204,7 @@ class Cart < ApplicationRecord
 end
 ```
 
-- Comment model, it belongs to the food_item and for each food item buyer or seller can make many comments, and only the admin will have the ability to delete any comments
+- Comment model, belongs to the food_item, and for each food item buyer or seller can make many comments, and only the admin will have the ability to delete any comments
 
 ```ruby
 class Comment < ApplicationRecord
@@ -210,7 +212,7 @@ class Comment < ApplicationRecord
 end
 ```
 
-- The ability model is comming from cancancan gem and in this model we can specify user can have different type of roles whitin the app, for example only admin can delete the comments from the comment list.
+- The ability model is coming from cancancan gem and in this model, we can specify users can have different types of roles within the app, for example only the admin can delete the comments from the comment list.
 
 ```Ruby
 class Ability
@@ -251,13 +253,13 @@ end
 
 ## Discuss the database relations to be implemented in your application
 
-- User table has two associations. 1. has many and belong tho the role table, 2. has only one profile
-- Profile table has 4 associations. 1. it belongs to the user, 2. it has many food, also it has many food item to sell with the class of fooditem, and a foreign key of seller_id, and has many to buy with the class of fooditem and the foreign key of buyer_id. 3. it has many comments to make with the class of comment which is a join table as a class of food_item with foreign key of buyer_id. 4. it has one attached image from active storage table.
-- FoodItem table has 4 associations, 1. it belong to profile, 2. it belongs to the buyer with the profile class, it belongs to the seller with the profile class as a join table. 3. it has many line_items. 4. it has many attached images from active storage tables. 5. it has many comments.
-- LineItem table has 2 association. 1. it belongs to the food_item table. 2. it belongs to the cart table.
-- Cart table has 1 association. it has many line items and it is dependent destroy.
-- Comment table has only one association with fooditem table.
-- Role table has 2 association. 1. it has and belogns to the user table. 2. it belongs to the resources(which I don't know how does this work)
+- User table has two associations. 1. has many and belong to the role table, 2. has only one profile
+- Profile table has 4 associations. 1. it belongs to the user, 2. it has a lot of food, also it has many food items to sell with the class of food item, and a foreign key of seller_id, and has many to buy with the class of food items and the foreign key of buyer_id. 3. it has many comments to make with the class of comments which is a join table as a class of food_item with a foreign key of buyer_id. 4. it has one attached image from the active storage table.
+- FoodItem table has 4 associations, 1. it belongs to profile, 2. it belongs to the buyer with the profile class, it belongs to the seller with the profile class as a join table. 3. it has many line_items. 4. it has many attached images from active storage tables. 5. it has many comments.
+- LineItem table has 2 associations. 1. it belongs to the food_item table. 2. it belongs to the cart table.
+- Cart table has 1 association. it has many line items and it is dependent on destroying.
+- Comment table has only one associated with the food item table.
+- Role table has 2 associations. 1. it has and belongs to the user table. 2. it belongs to the resources(which I don't know how does this work)
 
 ---
 
@@ -268,6 +270,11 @@ end
 ---
 
 ## Describe the way tasks are allocated and tracked in your project
+
+1. I start it with planning and brainstorming to come up with the idea and once I knew what I'm going to build I start it with my project
+2. I made the wireframe but I had to change some of the things in the app along the way, that's when my wireframe had to be changed.
+3. I used Trello for project management, first I wrote down my user story, once the user story was done, it had to start and make a basic of my app line the boilerplate of the app the basic gem the app needed, and so on. next I start to create a card for the feature or the functionality I was planning on and for each of them I create a card in Trello and put them in the to-do section. I start it with a user model which I used devise gem and finished it with a comment model. I also create 3 extra sections of reminder, blocker, and resolved. a reminder was to remind me if there an extra details I should add to my features. blocker was for if anything I would get stuck on I would put the details in the blocker and once it was resolved I would move it to the resolved section and put a comment as an explanation of how the issue got solved. it helped me to have a better understanding of the issue later on.
+4. each time if I would implement a new feature I would test it first to see it works the way is expected and then if my test would be ok, I stage the commit to the git and then would push my code to GitHub.
 
 - ![FinalERD](docs/trello/trello-1.png)
 - ![FinalERD](docs/trello/trello-2.png)
