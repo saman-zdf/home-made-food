@@ -308,6 +308,8 @@ end
 
 ## Describe the way tasks are allocated and tracked in your project
 
+- Trello link: [https://trello.com/b/vlLTPkc3/homemademeal](https://trello.com/b/vlLTPkc3/homemademeal)
+
 1. I start it with planning and brainstorming to come up with the idea and once I knew what I'm going to build I start it with my project
 2. I made the wireframe but I had to change some of the things in the app along the way, that's when my wireframe had to be changed.
 3. I used Trello for project management, first I wrote down my user story, once the user story was done, it had to start and make a basic of my app line the boilerplate of the app the basic gem the app needed, and so on. next I start to create a card for the feature or the functionality I was planning on and for each of them I create a card in Trello and put them in the to-do section. I start it with a user model which I used devise gem and finished it with a comment model. I also create 3 extra sections of reminder, blocker, and resolved. a reminder was to remind me if there an extra details I should add to my features. blocker was for if anything I would get stuck on I would put the details in the blocker and once it was resolved I would move it to the resolved section and put a comment as an explanation of how the issue got solved. it helped me to have a better understanding of the issue later on.
